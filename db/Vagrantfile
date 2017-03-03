@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
       rethinkdb create -d /var/lib/rethinkdb/instances.d/default 2>&1;
 
       # Start rethinkdb
-      service rethinkdb start;
+      /etc/init.d/rethinkdb start;
     EOF
   end
 end
