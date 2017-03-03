@@ -11,13 +11,13 @@ CLOUD_CONFIG_PATH = File.join(File.dirname(__FILE__), 'user-data')
 
 update_channel = 'alpha'
 image_version = 'current'
-vm_memory = 512
+vm_memory = 1024
 vm_cpus = 1
 
 cluster = [
-  { name: 'core-01', hostname: 'core-01', ip: '172.17.8.101', metadata: 'role=nginx'   },
-  { name: 'core-02', hostname: 'core-02', ip: '172.17.8.102', metadata: 'role=appside' },
-  { name: 'core-03', hostname: 'core-03', ip: '172.17.8.103', metadata: 'role=devside' }
+  { name: 'core-01', hostname: 'core-01', ip: '172.17.8.101', metadata: 'role=nginx' , indexmeta: 'index=1' },
+  { name: 'core-02', hostname: 'core-02', ip: '172.17.8.102', metadata: 'role=appside' , indexmeta: 'index=2' },
+  { name: 'core-03', hostname: 'core-03', ip: '172.17.8.103', metadata: 'role=devside' , indexmeta: 'index=3' }
 ]
 
 # Used to fetch a new discovery token for a cluster of size 3
@@ -68,7 +68,7 @@ Vagrant.configure('2') do |config|
       data['coreos']['etcd2']['discovery'] = token
 
       # Add metadata
-      data['coreos']['fleet']['metadata'] = node[:metadata]
+      data['coreos']['fleet']['metadata'] = node[:metadata] + ',' + node[:indexmeta]
 
       yaml = YAML.dump(data)
 
