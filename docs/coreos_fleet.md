@@ -71,9 +71,9 @@ Now, run `fleetctl list-machines` command, You will see something like below
 
 ```sh
 MACHINE     IP           METADATA
-0f666d32... 172.17.8.103 role=devside
-3dfaef6c... 172.17.8.102 role=appside
-dc387247... 172.17.8.101 role=nginx
+0f666d32... 172.17.8.103 role=devside,index=3
+3dfaef6c... 172.17.8.102 role=appside,index=2
+dc387247... 172.17.8.101 role=nginx,index=1
 ```
 
 Some points to note down here. I have assigned three different role to these VMs. It is not necessary. It is just one of the thousands ways to deploy.
@@ -164,13 +164,15 @@ Unit stf-websocket@.service inactive
   - provider@2
   - provider@3
 
-  login into core-01 host and edit nginx.conf
+
+  Unnecessary Action!!
+  ~~login into core-01 host and edit nginx.conf~~
 
   ```sh
   vagrant ssh core-01
   sudo vim /srv/nginx/nginx.conf
   ```
-  Update nginx with correct IP address in upstream part.
+  ~~Update nginx with correct IP address in upstream part.~~
 
   Now, you are ready to launch nginx service. Logout from VM and run below command.
 
